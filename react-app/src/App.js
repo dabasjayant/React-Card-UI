@@ -20,6 +20,7 @@ class App extends Component {
     this.superlike = this.superlike.bind(this);
     this.addCards = this.addCards.bind(this);
     this.handleSwipe = this.handleSwipe.bind(this);
+    this.expand = this.expand.bind(this);
   }
 
   handleSwipe = (card) => {
@@ -66,7 +67,7 @@ class App extends Component {
       var diffX = initialX - currentX;
       var diffY = initialY - currentY;
 
-      if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 2) {
         // sliding horizontally
         if (diffX > 0) {
           // swiped left
@@ -77,7 +78,7 @@ class App extends Component {
           likeBtn.click();
           console.log("swiped right");
         }  
-      } else {
+      } else if (Math.abs(diffX) < Math.abs(diffY) && Math.abs(diffY) > 2) {
         // sliding vertically
         if (diffY > 0) {
           // swiped up
@@ -148,7 +149,7 @@ class App extends Component {
           <img src={popSkip} className="popSkip" alt="" onContextMenu={(e)=> e.preventDefault()} />
           <img src={popSuperlike} className="popSuperlike" alt="" onContextMenu={(e)=> e.preventDefault()} />
           <img className="card-image disableSave" src={process.env.PUBLIC_URL + "/assets/pokemon/" + data.img} alt="user" onContextMenu={(e)=> e.preventDefault()} />
-          <p><b>{data.name}</b>, {data.age}</p>
+          <p onClick={this.expand}><b>{data.name}</b>, {data.age}</p>
           <div className="swipe-container"></div>
         </div>
       )
@@ -184,6 +185,10 @@ class App extends Component {
       setTimeout(function(){ element.remove(); }, 600);
       this.keyId -= 1;
     }
+  }
+
+  expand = () => {
+    console.log('expand');
   }
 
   componentDidMount() {
