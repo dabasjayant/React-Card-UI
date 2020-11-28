@@ -91,15 +91,6 @@ body {
   height: auto;
 }
 
-/* .noHighlight {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-} */
-
 .disableSave {
   -webkit-user-select:none;
   -webkit-touch-callout:none;
@@ -137,15 +128,15 @@ body {
 @keyframes like {
   0% {
     transform: scale(1) rotateZ(0deg);
-    left: 0;
+    margin-left: -20px;
   }
   30% { 
-    transform: scale(1.05) rotateZ(0deg);
-    left: 0;
+    transform: scale(1.1) rotateZ(0deg);
+    margin-left: -20px;
   }
   100% {
     transform: rotateZ(45deg);
-    left: 550px;
+    margin-left: 450px;
   }
 }
 
@@ -161,16 +152,19 @@ body {
 
 @keyframes skip {
   0% {
+    float: right;
     transform: rotateZ(360deg);
-    right: 0;
+    margin-left: 20px;
   }
   30% {
-    transform: scale(1.05) rotateZ(360deg);
-    right: 0;
+    float: right;
+    transform: scale(1.1) rotateZ(360deg);
+    margin-left: 20px;
   }
   100% {
+    float: right;
     transform: rotateZ(315deg);
-    right: 550px;
+    margin-left: -450px;
   } 
 }
 
@@ -189,8 +183,8 @@ body {
     transform: rotateZ(0deg);
     top: 10px;
   }
-  30% {
-    transform: scale(1.12) rotateZ(0deg);
+  40% {
+    transform: scale(1.1) rotateZ(0deg);
     top: 10px;
   }
   100% {

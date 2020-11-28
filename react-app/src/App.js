@@ -42,21 +42,27 @@ function addCards() {
 
 const like = function like() {
   if (keyId >= 0) {
-    document.getElementsByClassName("card").item(keyId).classList.add("animateLike");
+    var element = document.getElementsByClassName("card").item(keyId);
+    element.classList.add("animateLike");
+    setTimeout(function(){ element.remove(); }, 600);
     keyId -= 1;
   }
 }
 
 const skip = function skip() {
   if (keyId >= 0) {
-    document.getElementsByClassName("card").item(keyId).classList.add("animateSkip");
+    var element = document.getElementsByClassName("card").item(keyId);
+    element.classList.add("animateSkip");
+    setTimeout(function(){ element.remove(); }, 600);
     keyId -= 1;
   }
 }
 
 const superlike = function superlike() {
   if (keyId >= 0) {
-    document.getElementsByClassName("card").item(keyId).classList.add("animateSuperlike");
+    var element = document.getElementsByClassName("card").item(keyId);
+    element.classList.add("animateSuperlike");
+    setTimeout(function(){ element.remove(); }, 600);
     keyId -= 1;
   }
 }
