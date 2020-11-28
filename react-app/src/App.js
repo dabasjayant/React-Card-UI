@@ -10,7 +10,7 @@ function App() {
       <h1>Card UI</h1>
       <div className="card-stack">
         <div className="empty-card">
-          <p>There's no one around you. Expand your discovery settings to see more people.</p>
+        <img className="disableSave" src={process.env.PUBLIC_URL + "/assets/empty.png"} alt="empty" onContextMenu={(e)=> e.preventDefault()} />
         </div>
         {addCards()}
       </div>

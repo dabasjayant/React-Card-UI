@@ -44,13 +44,11 @@ body {
   position: absolute;
   min-width: 250px;
   max-width: 450px;
-  width: calc(100% - 120px);
+  width: calc(100% - 40px);
   background-color: #ffffff;
   box-shadow: 0 0 4px 0px #adadad;
   border-radius: 8px;
   cursor: pointer;
-  padding: 40px;
-  font-size: 21px;
 }
 
 .controls {
