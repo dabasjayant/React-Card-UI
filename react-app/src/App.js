@@ -22,20 +22,33 @@ class App extends Component {
     this.handleSwipe = this.handleSwipe.bind(this);
   }
 
-  handleSwipe = () => {
+  handleSwipe = (card) => {
 
-    var container = document.getElementsByClassName("card").item(this.keyId);
+    const container = card.getElementsByClassName("swipe-container").item(0);
 
-    container.addEventListener("touchstart", startTouch, false);
-    container.addEventListener("touchmove", moveTouch, false);
+    const likeBtn = document.getElementsByClassName("like").item(0);
+    const skipBtn = document.getElementsByClassName("skip").item(0);
+    const superlikeBtn = document.getElementsByClassName("superlike").item(0);
+
+    container.addEventListener("touchstart", startTouch, { passive: true});
+    container.addEventListener("touchmove", moveTouch, { passive: true});
+
+    container.addEventListener("mousedown", startMouse, { passive: true});
+    container.addEventListener("mousemove", moveMouse, { passive: true});
 
     // Swipe Up / Down / Left / Right
     var initialX = null;
     var initialY = null;
+    var minitialX = null;
+    var minitialY = null;
 
     function startTouch(e) {
       initialX = e.touches[0].clientX;
       initialY = e.touches[0].clientY;
+    };
+    function startMouse(e) {
+      minitialX = e.clientX;
+      minitialY = e.clientY;
     };
 
     function moveTouch(e) {
@@ -57,15 +70,18 @@ class App extends Component {
         // sliding horizontally
         if (diffX > 0) {
           // swiped left
+          skipBtn.click();
           console.log("swiped left");
         } else {
           // swiped right
+          likeBtn.click();
           console.log("swiped right");
         }  
       } else {
         // sliding vertically
         if (diffY > 0) {
           // swiped up
+          superlikeBtn.click();
           console.log("swiped up");
         } else {
           // swiped down
@@ -76,7 +92,50 @@ class App extends Component {
       initialX = null;
       initialY = null;
 
-      e.preventDefault();
+      // e.preventDefault();
+    }
+    function moveMouse(e) {
+      if (minitialX === null) {
+        return;
+      }
+
+      if (minitialY === null) {
+        return;
+      }
+
+      var currentX = e.clientX;
+      var currentY = e.clientY;
+
+      var diffX = minitialX - currentX;
+      var diffY = minitialY - currentY;
+
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        // sliding horizontally
+        if (diffX > 0) {
+          // swiped left
+          skipBtn.click();
+          console.log("swiped left");
+        } else {
+          // swiped right
+          likeBtn.click();
+          console.log("swiped right");
+        }  
+      } else {
+        // sliding vertically
+        if (diffY > 0) {
+          // swiped up
+          superlikeBtn.click();
+          console.log("swiped up");
+        } else {
+          // swiped down
+          console.log("swiped down");
+        }  
+      }
+
+      minitialX = null;
+      minitialY = null;
+
+      // e.preventDefault();
     }
   }
 
@@ -90,9 +149,10 @@ class App extends Component {
           <img src={popSuperlike} className="popSuperlike" alt="" onContextMenu={(e)=> e.preventDefault()} />
           <img className="card-image disableSave" src={process.env.PUBLIC_URL + "/assets/pokemon/" + data.img} alt="user" onContextMenu={(e)=> e.preventDefault()} />
           <p><b>{data.name}</b>, {data.age}</p>
+          <div className="swipe-container"></div>
         </div>
       )
-    }) 
+    });
     return newData;
   }
 
@@ -123,6 +183,15 @@ class App extends Component {
       element.classList.add("animateSuperlike");
       setTimeout(function(){ element.remove(); }, 600);
       this.keyId -= 1;
+    }
+  }
+
+  componentDidMount() {
+    const cardList = document.getElementsByClassName("card");
+    const size = document.getElementsByClassName("card").length;
+
+    for (var i=0; i<size; i++) {
+      this.handleSwipe(cardList.item(i));
     }
   }
 
