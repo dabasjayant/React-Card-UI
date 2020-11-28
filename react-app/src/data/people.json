@@ -1,0 +1,42 @@
+[
+  {
+    "name": "シャンデラ",
+    "age": 25,
+    "img": "chandelure.jpg"
+  },
+  {
+    "name": "キュレム",
+    "age": 20,
+    "img": "kyurem.jpg"
+  },
+  {
+    "name": "ミュウツー",
+    "age": 28,
+    "img": "mewtwo.jpg"
+  },
+  {
+    "name": "ピカチュウ",
+    "age": 19,
+    "img": "pikachu.jpg"
+  },
+  {
+    "name": "ニンフィア",
+    "age": 32,
+    "img": "sylveon.jpg"
+  },
+  {
+    "name": "ゼルネアス",
+    "age": 27,
+    "img": "xerneas.jpg"
+  },
+  {
+    "name": "イベルタル",
+    "age": 35,
+    "img": "yveltal.jpg"
+  },
+  {
+    "name": "ゼクロム",
+    "age": 46,
+    "img": "zekrom.jpg"
+  }
+]
