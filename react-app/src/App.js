@@ -1,6 +1,11 @@
 import likeIcon from './icons/like.svg';
 import superlikeIcon from './icons/superlike.svg';
 import skipIcon from './icons/skip.svg';
+
+import popLike from './icons/popLike.svg';
+import popSkip from './icons/popSkip.svg';
+import popSuperlike from './icons/popSuperlike.svg';
+
 import data from './data/people.json';
 import './App.css';
 
@@ -10,7 +15,7 @@ function App() {
       <h1>Card UI</h1>
       <div className="card-stack">
         <div className="empty-card">
-        <img className="disableSave" src={process.env.PUBLIC_URL + "/assets/empty.png"} alt="empty" onContextMenu={(e)=> e.preventDefault()} />
+          <img className="disableSave" src={process.env.PUBLIC_URL + "/assets/empty.png"} alt="empty" onContextMenu={(e)=> e.preventDefault()} />
         </div>
         {addCards()}
       </div>
@@ -37,7 +42,10 @@ function addCards() {
     keyId = i;
     return (
       <div className="card" key={i}>
-        <img className="disableSave" src={process.env.PUBLIC_URL + "/assets/pokemon/" + data.img} alt="user" onContextMenu={(e)=> e.preventDefault()} />
+        <img src={popLike} className="popLike" alt="" onContextMenu={(e)=> e.preventDefault()} />
+        <img src={popSkip} className="popSkip" alt="" onContextMenu={(e)=> e.preventDefault()} />
+        <img src={popSuperlike} className="popSuperlike" alt="" onContextMenu={(e)=> e.preventDefault()} />
+        <img className="card-image disableSave" src={process.env.PUBLIC_URL + "/assets/pokemon/" + data.img} alt="user" onContextMenu={(e)=> e.preventDefault()} />
         <p><b>{data.name}</b>, {data.age}</p>
       </div>
     )
@@ -48,6 +56,7 @@ function addCards() {
 const like = function like() {
   if (keyId >= 0) {
     var element = document.getElementsByClassName("card").item(keyId);
+    element.getElementsByClassName("popLike").item(0).style.display = 'block';
     element.classList.add("animateLike");
     setTimeout(function(){ element.remove(); }, 600);
     keyId -= 1;
@@ -57,6 +66,7 @@ const like = function like() {
 const skip = function skip() {
   if (keyId >= 0) {
     var element = document.getElementsByClassName("card").item(keyId);
+    element.getElementsByClassName("popSkip").item(0).style.display = 'block';
     element.classList.add("animateSkip");
     setTimeout(function(){ element.remove(); }, 600);
     keyId -= 1;
@@ -66,6 +76,7 @@ const skip = function skip() {
 const superlike = function superlike() {
   if (keyId >= 0) {
     var element = document.getElementsByClassName("card").item(keyId);
+    element.getElementsByClassName("popSuperlike").item(0).style.display = 'block';
     element.classList.add("animateSuperlike");
     setTimeout(function(){ element.remove(); }, 600);
     keyId -= 1;
