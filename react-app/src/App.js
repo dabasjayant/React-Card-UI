@@ -8,7 +8,12 @@ function App() {
   return (
     <div className="App">
       <h1>Card UI</h1>
-      <div className="card-stack">{addCards()}</div>
+      <div className="card-stack">
+        <div className="empty-card">
+          <p>There's no one around you. Expand your discovery settings to see more people.</p>
+        </div>
+        {addCards()}
+      </div>
 
       <div className="controls">
         <div className="skip noSelect" onClick={skip}>

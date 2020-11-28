@@ -40,6 +40,19 @@ body {
   font-size: 18px;
 }
 
+.empty-card{
+  position: absolute;
+  min-width: 250px;
+  max-width: 450px;
+  width: calc(100% - 120px);
+  background-color: #ffffff;
+  box-shadow: 0 0 4px 0px #adadad;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 40px;
+  font-size: 21px;
+}
+
 .controls {
   width: fit-content;
   margin: auto;
@@ -106,6 +119,9 @@ body {
     padding-top: 105%;
   }
   .card {
+    top: 70px;
+  }
+  .empty-card {
     top: 70px;
   }
   
