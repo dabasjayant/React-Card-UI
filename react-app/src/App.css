@@ -50,6 +50,14 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+.empty-card img {
+  min-width: 250px;
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
 
 .controls {
   width: fit-content;
