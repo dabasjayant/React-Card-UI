@@ -113,10 +113,9 @@ body {
   .card-stack {
     height: 0;
     padding-top: 105%;
-    position: relative;
   }
   .card {
-    top: 5px;
+    top: 70px;
   }
   
   .like, .skip {
@@ -133,4 +132,79 @@ body {
   .superlike img {
     width: 52px;
   }
+}
+
+@keyframes like {
+  0% {
+    transform: scale(1) rotateZ(0deg);
+    left: 0;
+  }
+  30% { 
+    transform: scale(1.05) rotateZ(0deg);
+    left: 0;
+  }
+  100% {
+    transform: rotateZ(45deg);
+    left: 550px;
+  }
+}
+
+.animateLike {
+  animation-fill-mode: both;
+  animation: like 0.6s linear;
+  animation-fill-mode: forwards;
+}
+.animateLike::before {
+  transform: rotateZ(-35deg);
+  background: url(https://i.imgur.com/Zkwj970.png) no-repeat center 10px;
+}
+
+@keyframes skip {
+  0% {
+    transform: rotateZ(360deg);
+    right: 0;
+  }
+  30% {
+    transform: scale(1.05) rotateZ(360deg);
+    right: 0;
+  }
+  100% {
+    transform: rotateZ(315deg);
+    right: 550px;
+  } 
+}
+
+.animateSkip {
+  animation-fill-mode: both;
+  animation: skip 0.6s linear;
+  animation-fill-mode: forwards;
+}
+.animateSkip::before {
+  transform: rotateZ(35deg);  
+  background: url(https://i.imgur.com/XqQZ4KR.png) no-repeat center 10px;
+}
+
+@keyframes superlike {
+  0% {
+    transform: rotateZ(0deg);
+    top: 10px;
+  }
+  30% {
+    transform: scale(1.12) rotateZ(0deg);
+    top: 10px;
+  }
+  100% {
+    transform: rotateZ(0deg);
+    top: -450px;
+  } 
+}
+
+.animateSuperlike {
+  animation-fill-mode: both;
+  animation: superlike 0.6s linear;
+  animation-fill-mode: forwards;
+}
+.animateSuperlike::before {
+  transform: rotateZ(35deg);  
+  background: url(https://i.imgur.com/XqQZ4KR.png) no-repeat center 10px;
 }
