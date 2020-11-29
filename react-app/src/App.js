@@ -67,26 +67,26 @@ class App extends Component {
       var diffX = initialX - currentX;
       var diffY = initialY - currentY;
 
+      /*
+       * TODO (ジャヤント) - modify implementation for better result
+       * スワイプエリアを編集する
+       */
       if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 2) {
         // sliding horizontally
         if (diffX > 0) {
           // swiped left
           skipBtn.click();
-          console.log("swiped left");
         } else {
           // swiped right
           likeBtn.click();
-          console.log("swiped right");
         }  
       } else if (Math.abs(diffX) < Math.abs(diffY) && Math.abs(diffY) > 2) {
         // sliding vertically
         if (diffY > 0) {
           // swiped up
           superlikeBtn.click();
-          console.log("swiped up");
         } else {
           // swiped down
-          console.log("swiped down");
         }  
       }
 
@@ -110,26 +110,26 @@ class App extends Component {
       var diffX = minitialX - currentX;
       var diffY = minitialY - currentY;
 
+      /*
+       * TODO (ジャヤント) - modify implementation for better result
+       * スワイプエリアを編集する
+       */
       if (Math.abs(diffX) > Math.abs(diffY)) {
         // sliding horizontally
         if (diffX > 0) {
           // swiped left
           skipBtn.click();
-          console.log("swiped left");
         } else {
           // swiped right
           likeBtn.click();
-          console.log("swiped right");
         }  
       } else {
         // sliding vertically
         if (diffY > 0) {
           // swiped up
           superlikeBtn.click();
-          console.log("swiped up");
         } else {
           // swiped down
-          console.log("swiped down");
         }  
       }
 
