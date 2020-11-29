@@ -14,7 +14,10 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.keyId = 0;
+    this.state = {
+      keyId: data.length-1,
+      isExpanded: false
+    };
     this.like = this.like.bind(this);
     this.skip = this.skip.bind(this);
     this.superlike = this.superlike.bind(this);
@@ -25,7 +28,11 @@ class App extends Component {
 
   handleSwipe = (card) => {
 
+    var ctx = this;
+
     const container = card.getElementsByClassName("swipe-container").item(0);
+
+    const cardTitle = card.getElementsByClassName("card-title").item(0);
 
     const likeBtn = document.getElementsByClassName("like").item(0);
     const skipBtn = document.getElementsByClassName("skip").item(0);
@@ -71,7 +78,7 @@ class App extends Component {
        * TODO (ジャヤント) - modify implementation for better result
        * スワイプエリアを編集する
        */
-      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 2) {
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 2 && !(ctx.state.isExpanded)) {
         // sliding horizontally
         if (diffX > 0) {
           // swiped left
@@ -80,7 +87,7 @@ class App extends Component {
           // swiped right
           likeBtn.click();
         }  
-      } else if (Math.abs(diffX) < Math.abs(diffY) && Math.abs(diffY) > 2) {
+      } else if (Math.abs(diffX) < Math.abs(diffY) && Math.abs(diffY) > 2 && !(ctx.state.isExpanded)) {
         // sliding vertically
         if (diffY > 0) {
           // swiped up
@@ -89,6 +96,8 @@ class App extends Component {
           // swiped down
         }  
       }
+      if (Math.abs(diffX) < Math.abs(diffY) && Math.abs(diffY) > 2 && (ctx.state.isExpanded) && diffY<0)
+        cardTitle.click();
 
       initialX = null;
       initialY = null;
@@ -114,7 +123,7 @@ class App extends Component {
        * TODO (ジャヤント) - modify implementation for better result
        * スワイプエリアを編集する
        */
-      if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 2 && !(ctx.state.isExpanded)) {
         // sliding horizontally
         if (diffX > 0) {
           // swiped left
@@ -123,7 +132,7 @@ class App extends Component {
           // swiped right
           likeBtn.click();
         }  
-      } else {
+      } else if (Math.abs(diffX) < Math.abs(diffY) && Math.abs(diffY) > 2 && !(ctx.state.isExpanded)) {
         // sliding vertically
         if (diffY > 0) {
           // swiped up
@@ -132,24 +141,27 @@ class App extends Component {
           // swiped down
         }  
       }
+      if (Math.abs(diffX) < Math.abs(diffY) && Math.abs(diffY) > 2 && (ctx.state.isExpanded) && diffY<0)
+        cardTitle.click();
 
       minitialX = null;
       minitialY = null;
-
+      
       // e.preventDefault();
     }
+
   }
 
   addCards() {
     const newData = data.map((data, i) => {
-      this.keyId = i;
       return (
         <div className="card" key={i}>
           <img src={popLike} className="popLike" alt="" onContextMenu={(e)=> e.preventDefault()} />
           <img src={popSkip} className="popSkip" alt="" onContextMenu={(e)=> e.preventDefault()} />
           <img src={popSuperlike} className="popSuperlike" alt="" onContextMenu={(e)=> e.preventDefault()} />
           <img className="card-image disableSave" src={process.env.PUBLIC_URL + "/assets/pokemon/" + data.img} alt="user" onContextMenu={(e)=> e.preventDefault()} />
-          <p onClick={this.expand}><b>{data.name}</b>, {data.age}</p>
+          <div className="card-title"><p onClick={this.expand}><b>{data.name}</b>, {data.age}</p></div>
+          <div className="card-description"><p>{data.about}</p></div>
           <div className="swipe-container"></div>
         </div>
       )
@@ -158,37 +170,46 @@ class App extends Component {
   }
 
   like = () => {
-    if (this.keyId >= 0) {
-      var element = document.getElementsByClassName("card").item(this.keyId);
+    if (this.state.keyId >= 0) {
+      var element = document.getElementsByClassName("card").item(this.state.keyId);
       element.getElementsByClassName("popLike").item(0).style.display = 'block';
       element.classList.add("animateLike");
       setTimeout(function(){ element.remove(); }, 600);
-      this.keyId -= 1;
+      var temp = this.state.keyId - 1;
+      this.setState({keyId: temp});
     }
   }
   
   skip = () => {
-    if (this.keyId >= 0) {
-      var element = document.getElementsByClassName("card").item(this.keyId);
+    if (this.state.keyId >= 0) {
+      var element = document.getElementsByClassName("card").item(this.state.keyId);
       element.getElementsByClassName("popSkip").item(0).style.display = 'block';
       element.classList.add("animateSkip");
       setTimeout(function(){ element.remove(); }, 600);
-      this.keyId -= 1;
+      var temp = this.state.keyId - 1;
+      this.setState({keyId: temp});
     }
   }
   
   superlike = () => {
-    if (this.keyId >= 0) {
-      var element = document.getElementsByClassName("card").item(this.keyId);
+    if (this.state.keyId >= 0) {
+      var element = document.getElementsByClassName("card").item(this.state.keyId);
       element.getElementsByClassName("popSuperlike").item(0).style.display = 'block';
       element.classList.add("animateSuperlike");
       setTimeout(function(){ element.remove(); }, 600);
-      this.keyId -= 1;
+      var temp = this.state.keyId - 1;
+      this.setState({keyId: temp});
     }
   }
 
   expand = () => {
-    console.log('expand');
+    var element = document.getElementsByClassName("card").item(this.state.keyId);
+    element.parentNode.classList.toggle("stack-expanded");
+    element.classList.toggle("animateExpansion");
+    element.getElementsByClassName("card-image").item(0).classList.toggle("card-image-expanded");
+    element.getElementsByClassName("card-description").item(0).classList.toggle("card-desc-expanded");
+    var temp = !this.state.isExpanded;
+    this.setState({isExpanded: temp});
   }
 
   componentDidMount() {
