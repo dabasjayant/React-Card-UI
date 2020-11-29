@@ -1,0 +1,50 @@
+[
+  {
+    "name": "シャンデラ",
+    "age": 25,
+    "img": "chandelure.jpg",
+    "about": "自己紹介"
+  },
+  {
+    "name": "キュレム",
+    "age": 20,
+    "img": "kyurem.jpg",
+    "about": "自己紹介"
+  },
+  {
+    "name": "ミュウツー",
+    "age": 28,
+    "img": "mewtwo.jpg",
+    "about": "自己紹介"
+  },
+  {
+    "name": "ピカチュウ",
+    "age": 19,
+    "img": "pikachu.jpg",
+    "about": "自己紹介"
+  },
+  {
+    "name": "ニンフィア",
+    "age": 32,
+    "img": "sylveon.jpg",
+    "about": "自己紹介"
+  },
+  {
+    "name": "ゼルネアス",
+    "age": 27,
+    "img": "xerneas.jpg",
+    "about": "自己紹介"
+  },
+  {
+    "name": "イベルタル",
+    "age": 35,
+    "img": "yveltal.jpg",
+    "about": "自己紹介"
+  },
+  {
+    "name": "ゼクロム",
+    "age": 46,
+    "img": "zekrom.jpg",
+    "about": "自己紹介"
+  }
+]

@@ -1,0 +1,314 @@
+body {
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.App {
+  text-align: center;
+}
+
+.card-stack {
+  height: 520px;
+  max-width: 480px;
+  overflow: auto;
+  margin: auto;
+  padding: 20px;
+}
+.stack-expanded {
+  padding: 0 !important;
+}
+
+.card {
+  position: absolute;
+  min-width: 250px;
+  max-width: 450px;
+  width: calc(100% - 40px);
+  background-color: #ffffff;
+  box-shadow: 0 0 4px 0px #adadad;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card .card-image {
+  min-width: 250px;
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.card-image-expanded {
+  max-width: 550px !important;
+}
+
+.card-title {
+  padding: 20px;
+}
+.card p {
+  text-align: left;
+  font-size: 18px;
+  margin: 0;
+}
+.card-description {
+  display: none;
+}
+.card-desc-expanded {
+  display: block !important;
+  background-color: #ffffff;
+  position: absolute;
+  width: calc(100% - 40px);
+  height: -webkit-fill-available;
+  box-shadow: inset 0 2px 4px 0px #adadad;
+  padding: 20px;
+}
+
+.swipe-container {
+  height: 80%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.empty-card{
+  position: absolute;
+  min-width: 250px;
+  max-width: 450px;
+  width: calc(100% - 40px);
+  background-color: #ffffff;
+  box-shadow: 0 0 4px 0px #adadad;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.empty-card img {
+  min-width: 250px;
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.controls {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.like {
+  width: 72px;
+  height: 72px;
+  background-color: #ffffff;
+  box-shadow: 0 0 4px 0px #808080;
+  float: right;
+  margin: 20px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  
+}
+
+.superlike {
+  width: 56px;
+  height: 56px;
+  background-color: #ffffff;
+  box-shadow: 0 0 4px 0px #808080;
+  float: left;
+  margin: 20px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.skip {
+  width: 72px;
+  height: 72px;
+  background-color: #ffffff;
+  box-shadow: 0 0 4px 0px #808080;
+  float: left;
+  margin: 20px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.like img, .skip img {
+  width: 72px;
+  height: auto;
+}
+
+.superlike img {
+  width: 56px;
+  height: auto;
+}
+
+.disableSave {
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+}
+
+.popLike, .popSkip {
+  position: absolute;
+  margin-top: 20px;
+  width: 200px !important;
+  height: auto !important;
+  display: none;
+}
+.popLike {
+  transform: rotateZ(-25deg);
+}
+.popSkip {
+  margin-left: calc(100% - 200px);
+  transform: rotateZ(25deg);
+}
+.popSuperlike {
+  position: absolute;
+  width: 250px !important;
+  height: auto !important;
+  display: none;
+  margin-left: calc(50% - 100px);
+  margin-top: 45%;
+}
+
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+  
+  .card-stack {
+    height: 0;
+    padding-top: 105%;
+  }
+  .card {
+    top: 70px;
+  }
+  .empty-card {
+    top: 70px;
+  }
+  
+  .like, .skip {
+    width: 64px;
+    height: 64px;
+  }
+  .like img, .skip img {
+    width: 64px;
+  }
+  .superlike {
+    width: 52px;
+    height: 52px;
+  }
+  .superlike img {
+    width: 52px;
+  }
+}
+
+@keyframes like {
+  0% {
+    transform: scale(1) rotateZ(0deg);
+    margin-left: -20px;
+  }
+  30% { 
+    transform: scale(1.1) rotateZ(0deg);
+    margin-left: -20px;
+  }
+  100% {
+    transform: rotateZ(45deg);
+    margin-left: 450px;
+  }
+}
+
+.animateLike {
+  animation-fill-mode: both;
+  animation: like 0.6s linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes skip {
+  0% {
+    float: right;
+    transform: rotateZ(360deg);
+    margin-left: 20px;
+  }
+  30% {
+    float: right;
+    transform: scale(1.1) rotateZ(360deg);
+    margin-left: 20px;
+  }
+  100% {
+    float: right;
+    transform: rotateZ(315deg);
+    margin-left: -450px;
+  } 
+}
+
+.animateSkip {
+  animation-fill-mode: both;
+  animation: skip 0.6s linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes superlike {
+  0% {
+    transform: rotateZ(0deg);
+    top: 10px;
+  }
+  40% {
+    transform: scale(1.1) rotateZ(0deg);
+    top: 10px;
+  }
+  100% {
+    transform: rotateZ(0deg);
+    top: -450px;
+  } 
+}
+
+.animateSuperlike {
+  animation-fill-mode: both;
+  animation: superlike 0.6s linear;
+  animation-fill-mode: forwards;
+}
+
+.expanded {
+  padding: 0;
+}
+
+@keyframes expand {
+  0% {
+    width: 100%;
+    max-width: 550px;
+    border-bottom-left-radius: initial;
+    border-bottom-right-radius: initial;
+  }
+  100% {
+    top: 0;
+    width: 100%;
+    max-width: 550px;
+    border-bottom-left-radius: initial;
+    border-bottom-right-radius: initial;
+  } 
+}
+
+.animateExpansion {
+  animation-fill-mode: both;
+  animation: expand 0.2s linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes retract {
+  0% {
+    width: 100%;
+    max-width: 550px;
+    border-bottom-left-radius: initial;
+    border-bottom-right-radius: initial;
+  }
+  100% {
+    top: unset;
+    width: calc(100% - 40px);
+    max-width: 450px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  } 
+}
+
+.animateTetraction {
+  animation-fill-mode: both;
+  animation: retract 0.2s linear;
+  animation-fill-mode: forwards;
+}
