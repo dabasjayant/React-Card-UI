@@ -1,7 +1,7 @@
 # React-Card-UI
 TinderのカードUIのようなUIをReactアプリで実装しました。
 
-![preview](Recording.gif)
+![preview](Preview.gif)
 
 ## Setup
 node.js, ReactJS
